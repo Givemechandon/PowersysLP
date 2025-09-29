@@ -22,15 +22,15 @@ const Footer = () => {
             <div className="space-y-3 text-sm">
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
-                <span>(11) 9999-9999</span>
+                <span>(21) 3030-6060</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />
-                <span>contato@powersys.com.br</span>
+                <span>comercial@powersys.com.br</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4" />
-                <span>São Paulo - SP</span>
+                <span>Rio de Janeiro - RJ</span>
               </div>
               <div className="flex items-center gap-2 mt-4">
                 <span className="font-semibold">Site:</span>
@@ -51,7 +51,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-background/20 pt-8 text-center text-sm opacity-75">
-          <p>&copy; 2024 POWERSYS. Todos os direitos reservados.</p>
+          <p>&copy; 2025 POWERSYS. Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>

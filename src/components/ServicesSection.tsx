@@ -41,28 +41,29 @@ const ServicesSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 place-items-center">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
-              <Card key={index} className="p-6 hover:shadow-lg transition-shadow">
-                <div className="flex items-start gap-4">
-                  <div className="bg-primary/10 p-3 rounded-lg">
-                    <Icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-                    <p className="text-muted-foreground mb-4">{service.description}</p>
-                    <ul className="space-y-2">
-                      {service.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-center gap-2 text-sm">
-                          <div className="w-1.5 h-1.5 bg-primary rounded-full" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
+              <Card
+                key={index}
+                className="w-full max-w-md p-8 flex flex-col items-center text-center transition-transform duration-200 hover:scale-105 hover:shadow-xl"
+              >
+                <div className="mb-6">
+                  <div className="bg-primary/10 p-6 rounded-xl flex items-center justify-center">
+                    <Icon className="w-20 h-20 text-primary" />
                   </div>
                 </div>
+                <h3 className="text-2xl font-bold mb-2">{service.title}</h3>
+                <p className="text-muted-foreground mb-4">{service.description}</p>
+                <ul className="space-y-2">
+                  {service.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-center gap-2 text-sm justify-center">
+                      <div className="w-2 h-2 bg-primary rounded-full" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
               </Card>
             );
           })}

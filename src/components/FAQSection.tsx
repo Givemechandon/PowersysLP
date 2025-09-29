@@ -8,28 +8,28 @@ import {
 const FAQSection = () => {
   const faqs = [
     {
-      question: "Qual o prazo para atendimento emergencial?",
-      answer: "Nosso tempo médio de resposta é de 2 horas para toda região metropolitana. Em casos urgentes, priorizamos o atendimento para garantir que seu negócio não seja afetado."
+      question: "Qual a diferença entre um nobreak e um gerador?",
+      answer: "O nobreak é um equipamento que garante energia imediata e estabilizada em caso de queda de energia, evitando desligamentos repentinos. Já o gerador fornece energia elétrica por longos períodos, ideal para manter sistemas funcionando em situações prolongadas de falta de energia."
     },
     {
-      question: "Vocês trabalham com que marcas de geradores?",
-      answer: "Trabalhamos com as principais marcas do mercado: Cummins, Stemac, Toyama, Branco, entre outras. Utilizamos apenas peças originais em todas as manutenções."
+      question: "O nobreak substitui o uso de um gerador?",
+      answer: "Não. O nobreak atua como uma solução imediata e de curta duração, enquanto o gerador é indicado para suportar a operação por horas ou até dias. Muitas empresas utilizam os dois em conjunto para garantir continuidade total."
     },
     {
-      question: "Como funciona a locação de geradores?",
-      answer: "Oferecemos locação de curto e longo prazo. Inclui entrega, instalação, operador qualificado e suporte 24/7. Equipamentos de última geração e em perfeito estado de conservação."
+      question: "Como escolher o nobreak ideal para minha empresa?",
+      answer: "É necessário avaliar a potência total dos equipamentos que serão conectados, o tempo de autonomia desejado e a sensibilidade dos aparelhos às variações de energia."
     },
     {
-      question: "Qual a garantia dos serviços?",
-      answer: "Todos os nossos serviços possuem garantia de 12 meses. As peças trocadas são originais e certificadas. Oferecemos também contrato de manutenção preventiva com descontos especiais."
+      question: "Quais são os principais tipos de geradores disponíveis?",
+      answer: "Os geradores podem ser a diesel, gasolina ou gás natural. A escolha depende da aplicação, da autonomia necessária e do custo-benefício para cada cenário."
     },
     {
-      question: "Atendem em finais de semana e feriados?",
-      answer: "Sim! Nosso atendimento é 24 horas por dia, 7 dias por semana, incluindo feriados. Sabemos que emergências não escolhem hora para acontecer."
+      question: "É necessário manutenção em nobreaks e geradores?",
+      answer: "Sim. Tanto nobreaks quanto geradores precisam de manutenção preventiva para garantir o funcionamento adequado. Isso inclui testes de bateria no nobreak e revisões periódicas no motor e sistema de combustão dos geradores."
     },
     {
-      question: "Como solicitar um orçamento?",
-      answer: "Você pode solicitar através do WhatsApp, preenchendo o formulário nesta página ou ligando para nossa central. Respondemos todos os orçamentos em até 24 horas."
+      question: "Por que investir em sistemas de energia de backup?",
+      answer: "Eles evitam prejuízos causados por interrupções de energia, protegem equipamentos sensíveis e garantem a continuidade de operações críticas em empresas, indústrias e residências."
     }
   ];
 

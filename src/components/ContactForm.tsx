@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
+import emailjs from "@emailjs/browser";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Nome é obrigatório").max(100),
@@ -21,32 +22,44 @@ const ContactForm = () => {
     message: ""
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     try {
       contactSchema.parse(formData);
-      
-      const whatsappMessage = encodeURIComponent(
-        `Olá! Meu nome é ${formData.name}.\n\nEmail: ${formData.email}\nTelefone: ${formData.phone}\n\nMensagem: ${formData.message}`
+
+      // Envio via EmailJS
+      const result = await emailjs.send(
+        "seu_service_id",
+        "seu_template_id",
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+        },
+        "seu_public_key"
       );
-      
-      window.open(`https://wa.me/5511999999999?text=${whatsappMessage}`, "_blank");
-      
-      toast({
-        title: "Mensagem enviada!",
-        description: "Entraremos em contato em breve.",
-      });
-      
-      setFormData({ name: "", email: "", phone: "", message: "" });
-    } catch (error) {
-      if (error instanceof z.ZodError) {
+
+      if (result.status === 200) {
         toast({
-          title: "Erro no formulário",
-          description: error.errors[0].message,
+          title: "Mensagem enviada!",
+          description: "Entraremos em contato em breve.",
+        });
+        setFormData({ name: "", email: "", phone: "", message: "" });
+      } else {
+        toast({
+          title: "Erro ao enviar",
+          description: "Tente novamente mais tarde.",
           variant: "destructive"
         });
       }
+    } catch (error) {
+      toast({
+        title: "Erro no formulário",
+        description: "Preencha todos os campos corretamente.",
+        variant: "destructive"
+      });
     }
   };
 
@@ -67,6 +80,7 @@ const ContactForm = () => {
             <div>
               <label className="block text-sm font-medium mb-2">Nome Completo</label>
               <Input
+                name="name"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="Seu nome"
@@ -78,6 +92,7 @@ const ContactForm = () => {
               <label className="block text-sm font-medium mb-2">Email</label>
               <Input
                 type="email"
+                name="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="seu@email.com"
@@ -91,6 +106,7 @@ const ContactForm = () => {
             <label className="block text-sm font-medium mb-2">Telefone/WhatsApp</label>
             <Input
               type="tel"
+              name="phone"
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
               placeholder="(11) 99999-9999"
@@ -102,6 +118,7 @@ const ContactForm = () => {
           <div>
             <label className="block text-sm font-medium mb-2">Mensagem</label>
             <Textarea
+              name="message"
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               placeholder="Descreva o serviço que você precisa..."
@@ -111,8 +128,8 @@ const ContactForm = () => {
             />
           </div>
 
-          <Button type="submit" size="lg" className="w-full">
-            Enviar Mensagem via WhatsApp
+          <Button type="submit" size="lg" className="w-full transition-transform duration-200 hover:scale-105">
+            Enviar Mensagem
           </Button>
         </form>
       </div>
