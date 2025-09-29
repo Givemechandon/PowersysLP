@@ -2,64 +2,32 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/hooks/use-toast";
-import { z } from "zod";
-import emailjs from "@emailjs/browser";
-
-const contactSchema = z.object({
-  name: z.string().trim().min(1, "Nome é obrigatório").max(100),
-  email: z.string().trim().email("Email inválido").max(255),
-  phone: z.string().trim().min(10, "Telefone inválido").max(15),
-  message: z.string().trim().min(1, "Mensagem é obrigatória").max(1000)
-});
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 const ContactForm = () => {
-  const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: ""
-  });
+  const [successOpen, setSuccessOpen] = useState(false);
+  const [errorOpen, setErrorOpen] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
     try {
-      contactSchema.parse(formData);
+      const response = await fetch("https://formsubmit.co/ajax/comercial@powersys.com.br", {
+        method: "POST",
+        body: formData,
+      });
 
-      // Envio via EmailJS
-      const result = await emailjs.send(
-        "seu_service_id",
-        "seu_template_id",
-        {
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          message: formData.message,
-        },
-        "seu_public_key"
-      );
-
-      if (result.status === 200) {
-        toast({
-          title: "Mensagem enviada!",
-          description: "Entraremos em contato em breve.",
-        });
-        setFormData({ name: "", email: "", phone: "", message: "" });
+      if (response.ok) {
+        form.reset();
+        setSuccessOpen(true);
       } else {
-        toast({
-          title: "Erro ao enviar",
-          description: "Tente novamente mais tarde.",
-          variant: "destructive"
-        });
+        setErrorOpen(true);
       }
     } catch (error) {
-      toast({
-        title: "Erro no formulário",
-        description: "Preencha todos os campos corretamente.",
-        variant: "destructive"
-      });
+      setErrorOpen(true);
     }
   };
 
@@ -75,14 +43,17 @@ const ContactForm = () => {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6 bg-card p-8 rounded-lg shadow-lg">
+        <form 
+          onSubmit={handleSubmit} 
+          className="space-y-6 bg-card p-8 rounded-lg shadow-lg"
+        >
+          {/* Nome e Email */}
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium mb-2">Nome Completo</label>
               <Input
+                type="text"
                 name="name"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="Seu nome"
                 required
                 maxLength={100}
@@ -93,8 +64,6 @@ const ContactForm = () => {
               <Input
                 type="email"
                 name="email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="seu@email.com"
                 required
                 maxLength={255}
@@ -102,25 +71,23 @@ const ContactForm = () => {
             </div>
           </div>
 
+          {/* Telefone */}
           <div>
             <label className="block text-sm font-medium mb-2">Telefone/WhatsApp</label>
             <Input
               type="tel"
               name="phone"
-              value={formData.phone}
-              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
               placeholder="(11) 99999-9999"
               required
               maxLength={15}
             />
           </div>
 
+          {/* Mensagem */}
           <div>
             <label className="block text-sm font-medium mb-2">Mensagem</label>
             <Textarea
               name="message"
-              value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               placeholder="Descreva o serviço que você precisa..."
               rows={5}
               required
@@ -128,11 +95,47 @@ const ContactForm = () => {
             />
           </div>
 
-          <Button type="submit" size="lg" className="w-full transition-transform duration-200 hover:scale-105">
+          {/* Configurações extras do FormSubmit */}
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_subject" value="Novo contato via site Powersys" />
+
+          <Button 
+            type="submit" 
+            size="lg" 
+            className="w-full transition-transform duration-200 hover:scale-105"
+          >
             Enviar Mensagem
           </Button>
         </form>
       </div>
+
+      {/* Modal de sucesso */}
+      <Dialog open={successOpen} onOpenChange={setSuccessOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="text-green-600 text-center text-2xl">
+              ✅ Certo!
+            </DialogTitle>
+            <p className="text-center text-muted-foreground mt-2">
+              Sua mensagem foi enviada com sucesso. Entraremos em contato em breve.
+            </p>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
+
+      {/* Modal de erro */}
+      <Dialog open={errorOpen} onOpenChange={setErrorOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="text-red-600 text-center text-2xl">
+              ❌ Ops!
+            </DialogTitle>
+            <p className="text-center text-muted-foreground mt-2">
+              Não foi possível enviar sua mensagem. Tente novamente mais tarde.
+            </p>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
