@@ -130,3 +130,24 @@ All colors MUST be HSL.
     }
   }
 }
+
+@keyframes blink {
+  0% {
+    color: #FFF;
+  }
+  100% {
+    color: #FFF;
+  }
+}
+
+@keyframes grow {
+  0% {
+    transform: scale(1); 
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

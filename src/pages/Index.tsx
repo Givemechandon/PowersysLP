@@ -1,4 +1,4 @@
-import InfiniteScrollBanner from "@/components/InfiniteScrollBanner";
+import Ctafaixasection from "@/components/Ctafaixasection";
 import HeroSection from "@/components/HeroSection";
 import ServicesSection from "@/components/ServicesSection";
 import VideoTestimonials from "@/components/VideoTestimonials";
@@ -12,6 +12,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       {/* <InfiniteScrollBanner /> */}
+      <Ctafaixasection />
       <HeroSection />
       <ServicesSection />
       <VideoTestimonials />

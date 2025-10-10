@@ -21,12 +21,12 @@ const ServicesSection = () => {
       description: "Equipe pronta para atender sua emergência em até 2 horas",
       features: ["Disponível 24/7", "Diagnóstico rápido", "Reparo imediato"]
     },
-    {
-      icon: Shield,
-      title: "Garantia Estendida",
-      description: "Proteção completa para seu investimento",
-      features: ["12 meses de garantia", "Revisões incluídas", "Peças certificadas"]
-    }
+    // {
+    //   icon: Shield,
+    //   title: "Garantia Estendida",
+    //   description: "Proteção completa para seu investimento",
+    //   features: ["12 meses de garantia", "Revisões incluídas", "Peças certificadas"]
+    // }
   ];
 
   return (

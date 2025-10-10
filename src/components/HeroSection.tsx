@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Clock, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Clock, CheckCircle2, ArrowDown } from "lucide-react";
 import logo from "@/assets/LOGO MONOCROMATICA.png";
 import heroBackground from "@/assets/hero-background.jpg";
 
@@ -12,20 +12,20 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative bg-background py-20 px-4 overflow-hidden">
+    <section className="relative bg-background py-24 px-4 overflow-hidden">
       {/* Background Image with Overlay */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${heroBackground})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-[#1a1a1a]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-900/40  to-[#1a1a1a]" />
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center animate-fade-in">
           {/* Logo */}
-          <div className="mb-8">
-            <img src={logo} alt="POWERSYS" className="h-30 md:h-32 mx-auto" />
+          <div className="-mb-16 -mt-64">
+            <img src={logo} alt="POWERSYS" className="h-96 md:h-[28rem] mx-auto" />
           </div>
 
           {/* Urgency Badge */}
@@ -36,18 +36,15 @@ const HeroSection = () => {
 
           {/* Main Headline */}
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-            Energia Ininterrupta para
+            Soluções em energia essencial e estratégica
             <br />
-            <span className="text-primary-foreground">
-              Seu Negócio Nunca Parar
-            </span>
+            <span className="text-primary-foreground"></span>
           </h1>
 
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-white/90 mb-8 max-w-3xl mx-auto drop-shadow-md">
             Manutenção preventiva e locação de geradores e nobreaks com equipe
-            especializada. Atendimento emergencial 24/7 em toda região
-            metropolitana.
+            especializada.
           </p>
 
           {/* Benefits */}
@@ -105,29 +102,35 @@ const HeroSection = () => {
           </div>
 
           {/* Trust indicators - Statistics */}
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <div className="bg-white rounded-lg p-10 shadow-md mt-6 flex justify-center items-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl">
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary-foreground mb-1">
+              <div className="text-3xl md:text-6xl font-bold text-blue-900/100 mb-1">
                 +200
               </div>
-              <div className="text-sm text-white/80">Contratos Ativos</div>
+              <div className="font-bold text-lg text-blue-900/100">Contratos Ativos</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary-foreground mb-1">
+              <div className="text-3xl md:text-6xl font-bold text-blue-900/100 mb-1">
                 +15
               </div>
-              <div className="text-sm text-white/80">Anos de Experiência</div>
+              <div className="font-bold text- text-blue-900/100">Anos de Experiência</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary-foreground mb-1">
+              <div className="text-3xl md:text-6xl font-bold text-blue-900/100 mb-1">
                 +2.000
               </div>
-              <div className="text-sm text-white/80">
+              <div className="font-bold text-lg text-blue-900/100">
                 Equipamentos Contratados
               </div>
             </div>
           </div>
         </div>
+      </div>
+      </div>
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex flex-col items-center text-white animate-bounce z-20">
+        <span className="text-sm">Role para Baixo</span>
+        <ArrowDown className="w-6 h-6" />
       </div>
     </section>
   );
