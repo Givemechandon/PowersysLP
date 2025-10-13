@@ -121,6 +121,10 @@ All colors MUST be HSL.
     animation: infinite-scroll 20s linear infinite;
   }
   
+  .animate-grow {
+    animation: grow 1s ease-in-out infinite;
+  }
+
   @keyframes infinite-scroll {
     from {
       transform: translateX(0);
