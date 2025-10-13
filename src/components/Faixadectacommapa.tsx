@@ -22,13 +22,16 @@ const Faixadectacommapa: React.FC = () => {
               rel="noopener noreferrer"
             >
               <Button
-                className="mt-8 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 "
+                className="mt-8 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 sm:px-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 flex items-center gap-2"
                 style={{
                   animation: "grow 1s ease-in-out infinite",
                 }}
               >
-                <FaWhatsapp />
-                Fale conosco no whatsapp para ser atendido agora mesmo.
+                <FaWhatsapp className="h-6 w-6" />
+                <span className="sm:hidden">Fale conosco no whatsapp</span>
+                <span className="hidden sm:inline">
+                  Fale conosco no whatsapp para ser atendido agora mesmo.
+                </span>
               </Button>
             </a>
           </div>

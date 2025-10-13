@@ -7,7 +7,6 @@ import Sergio from "@/assets/Sergio.mp4";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -20,16 +19,19 @@ const VideoTestimonials = () => {
       name: "Sergio",
       company: "Grupo 2154",
       videoUrl: Sergio,
+      text: "Hoje a Powersys é uma parceira estratégica, fundamental para manter nossa operação funcionando sem interrupções e com gás total",
     },
     {
       name: "Cadu",
       company: "Berenguer Engenharia",
       videoUrl: Cadu,
+      text: "A Powersys é um parceiro que está sempre disponível para nos atender, com uma equipe técnica qualificada e um pós-venda excepcional.",
     },
     {
       name: "Carlos",
       company: "HarperCollins",
       videoUrl: Carlos,
+      text: "Nós da HarperCollins, confiamos na Powersys para cuidar de toda a nossa infraestrutura de nobreaks e estamos nessa parceria a mais de 15 anos.",
     },
   ];
 
@@ -103,9 +105,7 @@ const VideoTestimonials = () => {
                   ))}
                 </div>
                 <p className="text-muted-foreground text-center mb-4">
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  do eiusmod tempor incididunt ut labore et dolore magna
-                  aliqua."
+                  "{testimonial.text}"
                 </p>
                 <h3 className="font-bold text-lg">{testimonial.name}</h3>
                 <p className="text-sm text-muted-foreground">
